@@ -1,12 +1,8 @@
-import heapq
-
 class LinkStateRouting:
 
-    def __init__(self, topology_file, message_file='messages.txt'):
+    def __init__(self, topology_file):
         self.load_topology(topology_file)
-        self.message_file = message_file
-        self.me = self.pick_node()
-        self.visited_nodes = set()
+        self.all_routing_tables = {}
 
     def load_topology(self, topology_file):
         self.topology = {}
@@ -17,10 +13,6 @@ class LinkStateRouting:
                 for neighbor in neighbors.split(","):
                     n, weight = neighbor.split("-")
                     self.topology[node][n] = int(weight)
-
-    def pick_node(self):
-        print(f"Los nodos disponibles son: {list(self.topology.keys())}")
-        return input("Elige tu nodo: ")
 
     def dijkstra(self, start, end):
         shortest_paths = {start: (None, 0)}
@@ -33,7 +25,7 @@ class LinkStateRouting:
             weight_to_current_node = shortest_paths[current_node][1]
 
             for next_node, weight in destinations.items():
-                accumulated_weight = weight_to_current_node + weight
+                accumulated_weight = weight + weight_to_current_node
                 if next_node not in shortest_paths:
                     shortest_paths[next_node] = (current_node, accumulated_weight)
                 else:
@@ -45,8 +37,7 @@ class LinkStateRouting:
             if not next_destinations:
                 return None
             current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
-        
-        # Reconstruir el camino desde el destino al origen.
+
         path = []
         while current_node is not None:
             path.append(current_node)
@@ -55,53 +46,50 @@ class LinkStateRouting:
         path.reverse()
         return path
 
+    def generate_routing_table(self, node):
+        routing_table = {}
+        for target in self.topology:
+            if target != node:
+                path = self.dijkstra(node, target)
+                if path:
+                    routing_table[target] = ' -> '.join(path)
+        return routing_table
 
-    def deliver_message(self, message, target):
-        print("🌟 Preparando mensaje 🌟")
-        path = self.dijkstra(self.me, target)
-        if path:
-            print(f"Ruta óptima encontrada: {' -> '.join(path)}")
-            for node in path[1:]:
-                print(f"🚀 Enviando mensaje a: {node}")
-            with open(self.message_file, 'a') as f:
-                f.write(f"{target}:{self.me}:{message}\n")
-        else:
-            print("No se encontró una ruta al destino.")
+    def simulate(self):
+        for node in self.topology:
+            routing_table = self.generate_routing_table(node)
+            self.all_routing_tables[node] = routing_table
 
-    def accept_message(self):
-        with open(self.message_file, 'r') as f:
-            lines = f.readlines()
-        new_lines = []
-        received = False
-        for line in lines:
-            target, sender, message = line.strip().split(":")
-            if target == self.me:
-                print(f"🎉 Mensaje recibido de {sender}: {message}")
-                received = True
+    def run_menu(self):
+        while True:
+            print("\n--- Menú ---")
+            print("1. Ver tablas de enrutamiento")
+            print("2. Enviar mensaje de un nodo a otro")
+            print("3. Salir")
+            choice = input("Elige una opción: ")
+
+            if choice == "1":
+                for node, table in self.all_routing_tables.items():
+                    print(f"\nTabla de enrutamiento para {node}:")
+                    for target, path in table.items():
+                        print(f"Ruta óptima a {target}: {path}")
+            
+            elif choice == "2":
+                from_node = input("Nodo de origen: ")
+                to_node = input("Nodo de destino: ")
+                if from_node in self.all_routing_tables and to_node in self.all_routing_tables[from_node]:
+                    print(f"Enviando mensaje de {from_node} a {to_node} a través de la ruta: {self.all_routing_tables[from_node][to_node]}")
+                else:
+                    print("Ruta no disponible o nodos incorrectos.")
+            
+            elif choice == "3":
+                print("Saliendo...")
+                break
+
             else:
-                new_lines.append(line)
-        with open(self.message_file, 'w') as f:
-            f.writelines(new_lines)
-        if not received:
-            print(f"No hay mensajes para el nodo {self.me}.")
+                print("Opción no válida, intenta de nuevo.")
 
 if __name__ == "__main__":
     routing = LinkStateRouting('topologiaLS.txt')
-    options = ["Enviar Mensaje", "Recibir Mensaje", "Cerrar el Programa"]
-    while True:
-        print("\n📜 Menú:")
-        for i, opt in enumerate(options):
-            print(f"{i+1}. {opt}")
-        option = input("🔮 Elige tu opcion: ")
-
-        if option == "1":
-            message = input("✒️ Escribe tu mensaje: ")
-            target = input("🎯 Indica el destino: ")
-            routing.deliver_message(message, target)
-        elif option == "2":
-            routing.accept_message()
-        elif option == "3":
-            print("👋 Cerrando el programa. ¡Hasta luego!")
-            break
-        else:
-            print("🚫 Opción no reconocida. Inténtalo de nuevo.")
+    routing.simulate()
+    routing.run_menu()
