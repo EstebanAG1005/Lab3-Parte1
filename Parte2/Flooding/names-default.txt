@@ -1,0 +1,13 @@
+{
+    "type": "names",
+    "config": {
+      "A": "lop20679@alumchat.xyz",
+      "B": "par20117@alumchat.xyz",
+      "C": "tar20017@alumchat.xyz",
+      "D": "ald205919@alumchat.xyz",
+      "E": "ort20192@alumchat.xyz",
+      "F": "bag20109@alumchat.xyz",
+      "G": "car20593@alumchat.xyz",
+      "H": "rey20074@alumchat.xyz"
+    }
+  }
