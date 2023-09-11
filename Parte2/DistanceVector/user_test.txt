@@ -1,0 +1,13 @@
+{
+    "type": "names",
+    "config": {
+      "A": "ald20591_0@alumchat.xyz",
+      "B": "ald20591_1@alumchat.xyz",
+      "C": "ald20591_2@alumchat.xyz",
+      "D": "ald20591_3@alumchat.xyz",
+      "E": "ald20591_4@alumchat.xyz",
+      "F": "ald20591_5@alumchat.xyz",
+      "G": "ald20591_6@alumchat.xyz",
+      "H": "ald20591_7@alumchat.xyz"
+    }
+  }
