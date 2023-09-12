@@ -176,6 +176,7 @@ class DistanceVector(slixmpp.ClientXMPP):
                 self.disconnect()
 
     def message(self, msg):
+        #print("Mensaje recibido:", msg)
         if msg["type"] in ("chat", "normal"):
             try:
                 # Descodificar el mensaje recibido
