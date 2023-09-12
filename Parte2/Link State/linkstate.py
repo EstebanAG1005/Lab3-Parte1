@@ -46,7 +46,6 @@ class LinkState(slixmpp.ClientXMPP):
         logging.basicConfig(level=level)
         logging.getLogger("slixmpp").setLevel(level)
 
-
     def dijkstra_algorithm(self):
         queue = [(0, self.me)]  # (cost, node)
         visited = set()
@@ -67,7 +66,9 @@ class LinkState(slixmpp.ClientXMPP):
                     or routing_table[neighbor]["cost"] > new_cost
                 ):
                     routing_table[neighbor] = {
-                        "next_hop": current_node if current_node != self.me else neighbor,
+                        "next_hop": current_node
+                        if current_node != self.me
+                        else neighbor,
                         "cost": new_cost,
                     }
                     heapq.heappush(queue, (new_cost, neighbor))
@@ -77,7 +78,6 @@ class LinkState(slixmpp.ClientXMPP):
     def update_table(self):
         self.routing_table = self.dijkstra_algorithm()  # Usar Dijkstra
         print(f"Tabla de routing actualizada: {self.routing_table}")
-
 
     async def start(self, event):
         self.send_presence()
@@ -201,6 +201,7 @@ class LinkState(slixmpp.ClientXMPP):
                 self.disconnect()
 
     def message(self, msg):
+        print("Mensaje recibido:", msg)
         if msg["type"] in ("chat", "normal"):
             try:
                 # Descodificar el mensaje recibido

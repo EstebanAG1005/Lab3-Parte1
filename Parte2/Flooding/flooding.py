@@ -37,9 +37,9 @@ class Flooding(slixmpp.ClientXMPP):
         self.sent_messages = set()
 
     def setup_logging(self, level):
-        # logging.basicConfig(level=logging.INFO)
-        # logging.getLogger("slixmpp").setLevel(level)
-        logging.basicConfig(level=logging.ERROR)
+        logging.basicConfig(level=logging.INFO)
+        logging.getLogger("slixmpp").setLevel(level)
+        # logging.basicConfig(level=logging.ERROR)
 
     async def start(self, event):
 

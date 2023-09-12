@@ -40,8 +40,7 @@ def initiate_session(usr_id, pass_key):
 menu_display = """
 ╔════════════════════════════════╗
 ║ 1. Start Chat Session          ║
-║ 2. Create New Account         ║
-║ 3. Exit Application           ║
+║ 2. Exit Application           ║
 ╚════════════════════════════════╝
 """
 
@@ -58,11 +57,6 @@ while active:
         usr_password = getpass("Enter your password: ")
         initiate_session(usr_name, usr_password)
     elif choice == "2":
-        print("Registering New Account...")
-        new_username = input("Choose a username (example@alumchat.xyz): ")
-        new_password = getpass("Choose a password: ")
-        initiate_registration(new_username, new_password)
-    elif choice == "3":
         active = False
         print("Goodbye!")
     else:
