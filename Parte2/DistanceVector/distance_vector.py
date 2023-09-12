@@ -119,6 +119,10 @@ class DistanceVector(slixmpp.ClientXMPP):
         for dest, info in self.routing_table.items():
             dest_jid = self.names[dest]
             next_hop_jid = self.names[info["next_hop"]]
+
+            # Agregar la correspondencia entre el nodo y su JID aquí:
+            print(f"El nodo {dest} es {dest_jid}")
+
             print(
                 f"Destino: {dest_jid} | Next Hop: {next_hop_jid} | Costo: {info['cost']}"
             )
@@ -176,7 +180,7 @@ class DistanceVector(slixmpp.ClientXMPP):
                 self.disconnect()
 
     def message(self, msg):
-        #print("Mensaje recibido:", msg)
+        print("Mensaje recibido:", msg)
         if msg["type"] in ("chat", "normal"):
             try:
                 # Descodificar el mensaje recibido
@@ -203,12 +207,3 @@ class DistanceVector(slixmpp.ClientXMPP):
                     self.send_text_message(to_node, original_msg=decoded_msg)
             except json.JSONDecodeError:
                 print(f"Mensaje recibido de {msg['from'].bare}: {msg['body']}")
-
-
-if __name__ == "__main__":
-    # Necesitas autenticarte con un JID y una contraseña.
-    jid = input("Enter your JID: ")
-    password = getpass("Enter your password: ")
-    dv = DistanceVector(jid, password)
-    dv.connect()
-    dv.process(forever=True)
