@@ -42,24 +42,17 @@ Siempre sigue las indicaciones en pantalla y asegúrate de ingresar datos válid
 
 el programa presenta un menú interactivo que permite al usuario realizar diversas acciones relacionadas con la comunicación y la gestión de la red. A continuación, se describen las opciones del menú y cómo funcionan:
 
-Actualizar Tabla:
+* "Actualizar Tabla": -
+Al seleccionar esta opción, el programa utiliza el algoritmo de Bellman-Ford para recalcular la tabla de enrutamiento basándose en la topología de la red. La tabla de enrutamiento es esencial para determinar el camino más corto para enviar mensajes a otros nodos en la red. Una vez recalculada, la tabla se comparte con los vecinos, asegurando que todos los nodos de la red tengan información actualizada para el enrutamiento.
 
 * "Mostrar Tabla:" - 
-Al seleccionar esta opción, el programa utiliza el algoritmo de Dijkstra para recalcular la tabla de enrutamiento basándose en la topología de la red.
-La tabla de enrutamiento es esencial para determinar el camino más corto para enviar mensajes a otros nodos en la red.
-Una vez recalculada, la tabla se comparte con los vecinos, asegurando que todos los nodos de la red tengan información actualizada para el enrutamiento.
+Cuando seleccionas esta opción, el programa te muestra la tabla de enrutamiento actual. Esta tabla proporciona información sobre cómo se enrutarán los mensajes a través de la red, mostrando el próximo salto y el costo asociado para llegar a cada nodo.
 
 * "Enviar Mensaje:" - 
-Al elegir esta opción, el programa mostrará la tabla de enrutamiento actual al usuario.
-Esta tabla proporciona información sobre cómo se enrutarán los mensajes a través de la red, mostrando el próximo salto y el costo asociado para llegar a cada nodo.
+Seleccionar esta opción te permite enviar un mensaje a otro nodo en la red. Debes especificar el nodo destinatario (por ejemplo, A, B, C) y escribir el mensaje que deseas enviar. El programa utiliza la tabla de enrutamiento para determinar el camino más corto y luego envía el mensaje al nodo destinatario a través de ese camino.
 
 * "Salir:" - 
-Esta opción permite al usuario enviar un mensaje a otro nodo en la red.
-Se le pedirá al usuario que especifique el nodo destinatario (por ejemplo, A, B, C) y que ingrese el mensaje que desea enviar.
-El programa utiliza la tabla de enrutamiento para determinar el camino más corto y luego envía el mensaje al nodo destinatario a través de ese camino.
-
-Al seleccionar esta opción, el programa terminará la sesión de chat actual y se desconectará de la red.
-Es importante elegir esta opción cuando el usuario haya terminado de interactuar con el programa para cerrar correctamente la sesión y liberar los recursos asociados.
+Si eliges esta opción, el programa finalizará la sesión de chat actual y se desconectará de la red. Es importante seleccionar esta opción cuando hayas terminado de interactuar con el programa para cerrar la sesión correctamente y liberar los recursos asociados.
 
 ## Link State Routing:
 
@@ -87,21 +80,20 @@ Siempre sigue las indicaciones en pantalla y asegúrate de ingresar datos válid
 
 el programa presenta un menú interactivo que permite al usuario realizar diversas acciones relacionadas con la comunicación y la gestión de la red. A continuación, se describen las opciones del menú y cómo funcionan:
 
-Actualizar Tabla:
-
-* "Mostrar Tabla:" - 
+* "Actualizar Tabla": -
 Al seleccionar esta opción, el programa utiliza el algoritmo de Dijkstra para recalcular la tabla de enrutamiento basándose en la topología de la red.
 La tabla de enrutamiento es esencial para determinar el camino más corto para enviar mensajes a otros nodos en la red.
 Una vez recalculada, la tabla se comparte con los vecinos, asegurando que todos los nodos de la red tengan información actualizada para el enrutamiento.
 
-* "Enviar Mensaje:" - 
+* "Mostrar Tabla:" - 
 Al elegir esta opción, el programa mostrará la tabla de enrutamiento actual al usuario.
 Esta tabla proporciona información sobre cómo se enrutarán los mensajes a través de la red, mostrando el próximo salto y el costo asociado para llegar a cada nodo.
 
-* "Salir:" - 
+* "Enviar Mensaje:" - 
 Esta opción permite al usuario enviar un mensaje a otro nodo en la red.
 Se le pedirá al usuario que especifique el nodo destinatario (por ejemplo, A, B, C) y que ingrese el mensaje que desea enviar.
 El programa utiliza la tabla de enrutamiento para determinar el camino más corto y luego envía el mensaje al nodo destinatario a través de ese camino.
 
+* "Salir:" - 
 Al seleccionar esta opción, el programa terminará la sesión de chat actual y se desconectará de la red.
 Es importante elegir esta opción cuando el usuario haya terminado de interactuar con el programa para cerrar correctamente la sesión y liberar los recursos asociados.
