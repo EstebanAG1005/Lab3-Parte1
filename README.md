@@ -21,7 +21,7 @@ user_test.txt (si es necesario para la configuración)
 Ejecuta el programa principal usando el comando:
 
 ```
-python main_flooding.py
+py -3.9 main_flooding.py
 ```
 Se presentará un menú con las siguientes opciones:
 
@@ -59,7 +59,7 @@ user_test.txt (si es necesario para la configuración)
 Ejecuta el programa principal usando el comando:
 
 ```
-python main_dv.py
+py -3.9 main_dv.py
 ```
 Se presentará un menú con las siguientes opciones:
 
@@ -106,7 +106,7 @@ user_test.txt (si es necesario para la configuración)
 Ejecuta el programa principal usando el comando:
 
 ```
-python main.py
+py -3.9 main.py
 ```
 Se presentará un menú con las siguientes opciones:
 
